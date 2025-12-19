@@ -1,0 +1,23 @@
+
+# إعدادات ACHRAF GPT V∞
+user:
+  name: "achraf bengarin"
+  email: "achrafbengarin2002@gmail.com"
+
+market:
+  symbol: "BTC/USDT"
+  timeframe: "1h"
+  exchange: "Binance"
+
+modules:
+  candle_patterns: true
+  liquidity_traps: true
+  smart_signals: true
+  pdf_report: true
+  dashboard: true
+  backtest_enabled: false
+
+visual:
+  theme: "dark"
+  show_entry_labels: true
+  max_rows_display: 30
