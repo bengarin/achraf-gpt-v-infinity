@@ -1,0 +1,2 @@
+timestamp,score,quality,reasons,warnings,structure_valid,liquidity_respected,pattern_confirmation,optimal_timing,acceptable_rr,entry_before_sweep,counter_trend,impulsive_entry
+2025-12-19T16:39:01.342195,70,Risky Decision,"Structure valid (clear S/R or trend break); Liquidity logic respected (post-sweep, no trap); Timing is optimal (session/session open); Risk-reward is acceptable (RR ≥ 1.5)",Impulsive entry with no confirmation,True,True,False,True,True,False,False,True
