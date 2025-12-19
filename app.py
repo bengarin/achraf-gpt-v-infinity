@@ -1,48 +1,48 @@
+# 🚀 ACHRAF GPT V1.1 - With Codex Instructions
+# This version includes prompts to guide GitHub Copilot (Codex)
+# Coded with ❤️ for achraf bengarin
+
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="ACHRAF GPT V∞", layout="centered")
-st.title("📊 ACHRAF GPT V∞")
+st.title("📈 ACHRAF GPT - تحليل نماذج التداول")
 
-st.markdown("مساعد ذكي لتحليل الشارتات واكتشاف النماذج الفنية.")
+# GPT/CODEX INSTRUCTION:
+# Add file uploader here so user can upload an image of a chart (JPG/PNG)
+# Later we will pass it to a function like `analyze_chart_image(file)` for smart detection
+uploaded_file = st.file_uploader("🖼️ ارفع صورة الشارت هنا (اختياري)", type=["jpg", "jpeg", "png"])
+if uploaded_file:
+    st.image(uploaded_file, caption="📊 الشارت الذي رفعته", use_column_width=True)
+    # GPT/CODEX INSTRUCTION:
+    # Here we could process the image with a function and display analysis
+    # Example: result = analyze_chart_image(uploaded_file)
+    # st.success(result)
 
-model = st.selectbox("اختر نوع النموذج لتحليله", ["اختراق كاذب", "فخ سيولة", "اختراق مؤكد"])
+model_type = st.selectbox("📌 اختر النموذج الفني المراد تحليله:", 
+                          ["اختراق كاذب", "فخ سيولة", "اختراق مؤكد"])
 
-def show_chart(data, level, label):
-    fig, ax = plt.subplots()
-    ax.plot(data, label="السعر")
-    ax.axhline(y=level, color='red', linestyle='--', label=label)
-    ax.legend()
-    ax.grid(True)
-    st.pyplot(fig)
+# Generate fake price data
+x = np.linspace(0, 10, 100)
+if model_type == "اختراق كاذب":
+    y = np.sin(x) + np.random.normal(0, 0.1, 100)
+    analysis = "🚨 تم رصد اختراق كاذب. من الأفضل الانتظار لتأكيد الاتجاه."
+elif model_type == "فخ سيولة":
+    y = np.cos(x) + np.random.normal(0, 0.1, 100)
+    analysis = "⚠️ هذا فخ سيولة. كن حذرًا من الدخول العاطفي."
+else:
+    y = np.sin(x) * np.cos(x) + np.random.normal(0, 0.1, 100)
+    analysis = "✅ اختراق مؤكد. الإشارة تدعم دخول مدروس مع إدارة مخاطر."
 
-if model == "اختراق كاذب":
-    data = np.concatenate([
-        np.linspace(1.1150, 1.1195, 20),
-        np.linspace(1.1195, 1.1215, 5),
-        np.linspace(1.1215, 1.1180, 10),
-        np.linspace(1.1180, 1.1160, 5)
-    ])
-    show_chart(data, 1.1200, "مستوى المقاومة")
-    st.warning("❌ هذا اختراق كاذب. لا ينصح بالدخول.")
+fig, ax = plt.subplots()
+ax.plot(x, y)
+ax.set_title("نموذج: " + model_type)
+st.pyplot(fig)
 
-elif model == "فخ سيولة":
-    data = np.concatenate([
-        np.linspace(1.2980, 1.3000, 15),
-        np.linspace(1.3000, 1.3030, 3),
-        np.linspace(1.3030, 1.2985, 6),
-        np.linspace(1.2985, 1.2960, 6)
-    ])
-    show_chart(data, 1.3000, "منطقة سيولة")
-    st.warning("🪤 فخ سيولة. تجنب الدخول.")
+st.markdown("### 🧠 التحليل:
+" + analysis)
 
-elif model == "اختراق مؤكد":
-    data = np.concatenate([
-        np.linspace(1.2450, 1.2495, 15),
-        np.linspace(1.2495, 1.2525, 5),
-        np.linspace(1.2525, 1.2500, 5),
-        np.linspace(1.2500, 1.2560, 10)
-    ])
-    show_chart(data, 1.2500, "مستوى الاختراق")
-    st.success("✅ اختراق مؤكد. فرصة جيدة للدخول.")
+# GPT/CODEX INSTRUCTION:
+# In future versions, replace fake data with real-time chart data
+# Add support for CSV uploads or MetaTrader screenshot reading
