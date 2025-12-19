@@ -1,9 +1,7 @@
-"""Logic utilities for chart analysis and trade decision evaluation."""
+# logic.py - Decision Engine V1
 from dataclasses import dataclass
 from typing import Dict, List, Tuple
-
 from PIL import Image
-
 
 @dataclass
 class DecisionResult:
@@ -12,7 +10,6 @@ class DecisionResult:
     quality: str
     reasons: List[str]
     warnings: List[str]
-
 
 def _collect_positive_points(criteria: Dict[str, bool]) -> Tuple[int, List[str]]:
     """Assign positive points based on passed criteria."""
@@ -32,7 +29,6 @@ def _collect_positive_points(criteria: Dict[str, bool]) -> Tuple[int, List[str]]
             reasons.append(description)
     return score, reasons
 
-
 def _collect_negative_points(criteria: Dict[str, bool]) -> Tuple[int, List[str]]:
     """Assign negative points and record warnings for risky conditions."""
     negative_rules = [
@@ -49,7 +45,6 @@ def _collect_negative_points(criteria: Dict[str, bool]) -> Tuple[int, List[str]]
             warnings.append(description)
     return score, warnings
 
-
 def _determine_quality(score: int) -> str:
     """Map a numeric score to a qualitative decision label."""
     if score >= 75:
@@ -58,20 +53,8 @@ def _determine_quality(score: int) -> str:
         return "Risky Decision"
     return "Bad Decision"
 
-
 def evaluate_trade_decision(criteria: Dict[str, bool]) -> DecisionResult:
-    """Evaluate a trade setup using a structured scoring model.
-
-    Expected keys in ``criteria`` (all booleans):
-    - structure_valid: clear support/resistance or trend break exists.
-    - liquidity_respected: entry follows a liquidity sweep without being a trap.
-    - pattern_confirmation: confirmation candle/pattern exists.
-    - optimal_timing: aligned with session timing or session open.
-    - acceptable_rr: risk-reward ratio is at least 1.5.
-    - entry_before_sweep: entry happened before liquidity sweep.
-    - counter_trend: trade goes against prevailing trend.
-    - impulsive_entry: entry taken without confirmation.
-    """
+    """Evaluate a trade setup using a structured scoring model."""
     positive_score, reasons = _collect_positive_points(criteria)
     negative_score, warnings = _collect_negative_points(criteria)
 
@@ -86,10 +69,7 @@ def evaluate_trade_decision(criteria: Dict[str, bool]) -> DecisionResult:
         warnings=warnings,
     )
 
-
 def analyze_chart_image(uploaded_file):
-    """Placeholder image analysis to keep backward compatibility."""
-    # This stub keeps the previous behavior while the decision engine evolves.
+    """Placeholder image analysis — يمكن تحديثها لاحقًا برؤية حاسوبية أو GPT Vision."""
     image = Image.open(uploaded_file)
-    _ = image  # suppress unused-variable linting without altering functionality
     return "This function is deprecated; use evaluate_trade_decision instead."
