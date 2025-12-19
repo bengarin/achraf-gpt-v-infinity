@@ -14,3 +14,6 @@
 pip install -r requirements.txt
 streamlit run app.py
 ```
+
+
+✅ Mise à jour automatique depuis ACHRAF Codex GPT.
