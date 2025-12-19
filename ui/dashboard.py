@@ -3,7 +3,7 @@ import pandas as pd
 from collections import Counter
 from statistics import mean
 import altair as alt
-
+from app.logic import evaluate_trade_decision
 # ==========================================
 # تحميل البيانات من ملف سجل التداول
 # ==========================================
